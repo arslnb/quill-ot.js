@@ -56,5 +56,14 @@ function onReceiveDelta(delta) {
   // If this delta was sent by this client they need to call otClient.serverAck() instead
   // this prevents deltas that have already been applied by the user from being applied twice
   otClient.applyFromServer(delta);
+
+  // For example, if you're retrieving deltas from the server using websockets
+  // check if the received delta author is the client who received it by doing: 
+
+  // if(delta.author == socket.id){
+  //     otClient.serverAck()
+  // } else {
+  //     otClient.applyFromServer(delta.data);
+  // }
 }
 ```  
